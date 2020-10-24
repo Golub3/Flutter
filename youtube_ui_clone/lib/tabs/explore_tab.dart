@@ -1,13 +1,29 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:youtube_ui_clone/tabs/home_tab.dart';
+import 'package:youtube_ui_clone/models/user.dart';
+import 'package:youtube_ui_clone/models/video.dart';
+import 'package:youtube_ui_clone/widgets/suggestions.dart';
+import 'package:youtube_ui_clone/widgets/video_widget.dart';
 
-class ExploreTab extends StatefulWidget {
-  @override
-  _ExploreTabState createState() => _ExploreTabState();
-}
+class ExploreTab extends StatelessWidget {
+  List<Widget> getVideos() {
+    List<Video> videos = generateVideos();
+    List<Widget> videosWidgetList = [];
 
-class _ExploreTabState extends State<ExploreTab> {
-  final HomeTab homeTab = new HomeTab();
+    videosWidgetList.add(Container(
+      padding: EdgeInsets.only(top: 10, bottom: 10),
+      color: Color(0xFF212121),
+      child: Suggestions(),
+    ));
+
+    for (Video video in videos) {
+      videosWidgetList.add(VideoWidget(video: video));
+    }
+
+    return videosWidgetList;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,17 +164,60 @@ class _ExploreTabState extends State<ExploreTab> {
                   ],
                 )),
             SizedBox(height: 10.0),
-            homeTab.getVideos()[8],
-            homeTab.getVideos()[7],
-            homeTab.getVideos()[6],
-            homeTab.getVideos()[5],
-            homeTab.getVideos()[4],
-            homeTab.getVideos()[3],
-            homeTab.getVideos()[2],
-            homeTab.getVideos()[1],
+            getVideos()[1],
+            getVideos()[2],
+            // getVideos()[6],
+            // getVideos()[5],
+            // getVideos()[4],
+            // getVideos()[3],
+            // getVideos()[2],
+            // getVideos()[1],
           ],
         ),
       ),
     );
+  }
+
+  List<String> videosList = [
+    // "Вступ. Налаштування середовища. Flutter. Лекція 1",
+    // "The Complete Cosmos Secrets of the Solar System HD",
+    // "Best laptop for programming in 2020",
+    // "Eminem: Space Bound",
+    // "Get started with competitive programming",
+    // "How to ace the coding interview!",
+    "Queen: Bohemian Rhapsody",
+    "Avengers Endgame: Trailer"
+  ];
+
+  List<User> usersList = [
+    // User(
+    //     username: "Сергій Титенко",
+    //     profilePicture: AssetImage("assets/0.1.jpg")),
+    // User(
+    //     username: "National Geographic",
+    //     profilePicture: AssetImage("assets/1.1.jpg")),
+    //   User(username: "10BestOnes", profilePicture: AssetImage("assets/2.1.jpg")),
+    //   User(
+    //       username: "Eminem Music", profilePicture: AssetImage("assets/3.1.jpg")),
+    //   User(username: "Max", profilePicture: AssetImage("assets/4.jpg")),
+    // User(username: "Miller", profilePicture: AssetImage("assets/5.jpg")),
+    User(username: "Queen vevo", profilePicture: AssetImage("assets/6.jpg")),
+    User(username: "Marvel", profilePicture: AssetImage("assets/7.jpg"))
+  ];
+
+  List<Video> generateVideos() {
+    Random random = new Random();
+    List<Video> vids = [];
+    for (int i = 0; i < videosList.length; i++) {
+      vids.add(Video(
+        AssetImage("assets/" + (i + 6).toString() + ".jpg"),
+        // random.nextInt(10000000) + 1000,
+        10,
+        DateTime.now().subtract(Duration(days: random.nextInt(1000) + 10)),
+        videosList[i],
+        usersList[i],
+      ));
+    }
+    return vids;
   }
 }

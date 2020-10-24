@@ -41,29 +41,29 @@ class SubscriptionsTab extends StatelessWidget {
   }
 
   List<String> videosList = [
-    "Вступ. Налаштування середовища. Flutter. Лекція 1",
-    "The Complete Cosmos Secrets of the Solar System HD",
-    "Best laptop for programming in 2020",
+    // "Вступ. Налаштування середовища. Flutter. Лекція 1",
+    // "The Complete Cosmos Secrets of the Solar System HD",
+    // "Best laptop for programming in 2020",
     "Eminem: Space Bound",
     "Get started with competitive programming",
     "How to ace the coding interview!",
-    "Queen: Bohemian Rhapsody",
-    "Avengers Endgame: Trailer"
+    // "Queen: Bohemian Rhapsody",
+    // "Avengers Endgame: Trailer"
   ];
 
   List<User> usersList = [
-    User(
-        username: "Сергій Титенко",
-        profilePicture: AssetImage("assets/0.1.jpg")),
-    User(
-        username: "National Geographic",
-        profilePicture: AssetImage("assets/1.1.jpg")),
-    User(username: "10BestOnes", profilePicture: AssetImage("assets/2.1.jpg")),
+    // User(
+    //     username: "Сергій Титенко",
+    //     profilePicture: AssetImage("assets/0.1.jpg")),
+    // User(
+    //     username: "National Geographic",
+    //     profilePicture: AssetImage("assets/1.1.jpg")),
+    // User(username: "10BestOnes", profilePicture: AssetImage("assets/2.1.jpg")),
     User(username: "Eminem vevo", profilePicture: AssetImage("assets/3.jpg")),
     User(username: "Max", profilePicture: AssetImage("assets/4.jpg")),
     User(username: "Miller", profilePicture: AssetImage("assets/5.jpg")),
-    User(username: "Queen vevo", profilePicture: AssetImage("assets/6.jpg")),
-    User(username: "Marvel", profilePicture: AssetImage("assets/7.jpg"))
+    // User(username: "Queen vevo", profilePicture: AssetImage("assets/6.jpg")),
+    // User(username: "Marvel", profilePicture: AssetImage("assets/7.jpg"))
   ];
 
   List<Video> generateVideos() {
@@ -71,11 +71,12 @@ class SubscriptionsTab extends StatelessWidget {
     List<Video> vids = [];
     for (int i = 0; i < videosList.length; i++) {
       vids.add(Video(
-          AssetImage("assets/" + i.toString() + ".jpg"),
-          random.nextInt(10000000) + 1000,
-          DateTime.now().subtract(Duration(days: random.nextInt(1000) + 10)),
-          videosList[i],
-          usersList[i]));
+        AssetImage("assets/" + (i + 3).toString() + ".jpg"),
+        random.nextInt(10000000) + 1000,
+        DateTime.now().subtract(Duration(days: random.nextInt(1000) + 10)),
+        videosList[i],
+        usersList[i],
+      ));
     }
     return vids;
   }

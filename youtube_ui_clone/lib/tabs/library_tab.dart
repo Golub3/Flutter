@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_ui_clone/tabs/home_tab.dart';
+import 'package:youtube_ui_clone/pages/watched.dart';
+import 'package:provider/provider.dart';
+import 'package:youtube_ui_clone/models/videoLibrary.dart';
 
 class LibraryTab extends StatelessWidget {
-  final HomeTab homeTab = new HomeTab();
-
   @override
   Widget build(BuildContext context) {
+    var model = Provider.of<VideoLibrary>(context);
     return Container(
       color: Color(0xFF212121),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           ListTile(
-            leading: Icon(Icons.history, color: Color(0xFF909090)),
-            title: Text(
-              'History',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
+              leading: Icon(Icons.history, color: Color(0xFF909090)),
+              title: Text(
+                'History',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Watched()));
+              }),
           ListTile(
             leading: Icon(Icons.file_download, color: Color(0xFF909090)),
             title: Text('Downloads', style: TextStyle(color: Colors.white)),
@@ -64,7 +68,7 @@ class LibraryTab extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.thumb_up, color: Color(0xFF909090)),
             title: Text('Liked videos', style: TextStyle(color: Colors.white)),
-            subtitle: Text('4 Videos',
+            subtitle: Text('${model.likedVideos.length}',
                 style: TextStyle(color: Color(0xFF909090), fontSize: 12.0)),
           ),
         ],

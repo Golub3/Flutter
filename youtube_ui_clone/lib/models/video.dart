@@ -7,14 +7,19 @@ class Video {
   DateTime uploadDate;
   String videoTitle;
   User user;
+  int likeCount;
+  int dislikeCount;
 
   Video(AssetImage thumbnail, int viewCount, DateTime uploadDate,
-      String videoTitle, User user) {
+      String videoTitle, User user,
+      [int likeCount = 10, int dislikeCount = 5]) {
     this.thumbnail = thumbnail;
     this.viewCount = viewCount;
     this.uploadDate = uploadDate;
     this.videoTitle = videoTitle;
     this.user = user;
+    this.likeCount = likeCount;
+    this.dislikeCount = dislikeCount;
   }
 
   String getViewCount() {
