@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:youtube_ui_clone/features/api/services.dart';
+import 'package:youtube_ui_clone/features/bloc/albums/bloc.dart';
+import 'package:youtube_ui_clone/features/routing/InitialDiagramScreen.dart';
+import 'package:youtube_ui_clone/features/screens/settings_screen.dart';
+import 'package:youtube_ui_clone/features/screens/your_data.dart';
+import 'package:youtube_ui_clone/features/screens/your_data.dart';
 import 'package:youtube_ui_clone/models/user.dart';
 
 class UserProfilePage extends StatelessWidget {
   final User currentUser;
+  final _diagramScreen = GlobalKey<NavigatorState>();
 
   UserProfilePage({this.currentUser});
 
@@ -14,12 +22,15 @@ class UserProfilePage extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
             },
-            child: Icon(Icons.close, color: Colors.white)),
-        title: Text('Account', style: TextStyle(color: Colors.white)),
-        backgroundColor: Color(0xFF282828),
+            child: Icon(Icons.close,
+                color: Theme.of(context).textTheme.bodyText1.color)),
+        title: Text('Account',
+            style:
+                TextStyle(color: Theme.of(context).textTheme.bodyText1.color)),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Container(
-        color: Color(0xFF282828),
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: Column(
           children: <Widget>[
             Container(
@@ -33,12 +44,16 @@ class UserProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(currentUser.username,
-                          style:
-                              TextStyle(color: Colors.white, fontSize: 16.0)),
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
+                              fontSize: 16.0)),
                       SizedBox(height: 5.0),
                       Text('10022000golub@gmail.com',
-                          style:
-                              TextStyle(color: Colors.white, fontSize: 16.0)),
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
+                              fontSize: 16.0)),
                       SizedBox(height: 5.0),
                       Text('Manage your Google Account',
                           style: TextStyle(color: Colors.lightBlue))
@@ -47,52 +62,71 @@ class UserProfilePage extends StatelessWidget {
                 ],
               ),
             ),
-            Divider(color: Colors.white),
+            Divider(color: Theme.of(context).textTheme.bodyText1.color),
             ListTile(
               leading: Icon(Icons.account_box, color: Color(0xFF909090)),
-              title:
-                  Text('Your channel', style: TextStyle(color: Colors.white)),
+              title: Text('Your channel',
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color)),
             ),
             ListTile(
               leading:
                   Icon(Icons.settings_applications, color: Color(0xFF909090)),
-              title:
-                  Text('Youtube Studio', style: TextStyle(color: Colors.white)),
+              title: Text('Youtube Studio',
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color)),
             ),
             ListTile(
               leading: Icon(Icons.access_time, color: Color(0xFF909090)),
-              title:
-                  Text('Time watched', style: TextStyle(color: Colors.white)),
+              title: Text('Time watched',
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color)),
             ),
             ListTile(
               leading: Icon(Icons.video_library, color: Color(0xFF909090)),
               title: Text('Get YouTube Premium',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color)),
             ),
             ListTile(
               leading: Icon(Icons.monetization_on, color: Color(0xFF909090)),
               title: Text('Paid memberships',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color)),
             ),
             ListTile(
               leading: Icon(Icons.supervisor_account, color: Color(0xFF909090)),
-              title:
-                  Text('Switch account', style: TextStyle(color: Colors.white)),
+              title: Text('Switch account',
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color)),
             ),
             ListTile(
-              leading: Icon(Icons.security, color: Color(0xFF909090)),
-              title: Text('Your data in YouTube',
-                  style: TextStyle(color: Colors.white)),
-            ),
-            Divider(color: Colors.white),
+                leading: Icon(Icons.security, color: Color(0xFF909090)),
+                title: Text('Your data in YouTube',
+                    style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyText1.color)),
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => YourData()));
+                }),
+            Divider(color: Theme.of(context).textTheme.bodyText1.color),
             ListTile(
-              leading: Icon(Icons.settings, color: Color(0xFF909090)),
-              title: Text('Settings', style: TextStyle(color: Colors.white)),
-            ),
+                leading: Icon(Icons.settings, color: Color(0xFF909090)),
+                title: Text('Settings',
+                    style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyText1.color)),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => BlocProvider(
+                          create: (context) =>
+                              AlbumsBloc(albumsRepo: AlbumServices()),
+                          child: AlbumsScreen())));
+                }),
             ListTile(
               leading: Icon(Icons.help, color: Color(0xFF909090)),
               title: Text('Help & feedback',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color)),
             ),
           ],
         ),

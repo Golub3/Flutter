@@ -91,7 +91,8 @@ class _VideoWidgetState extends State<VideoWidget>
                           style: TextStyle(
                               fontSize: 20,
                               fontFamily: "Helvetica",
-                              color: Color(0xFFFFFFFF),
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
                               fontWeight: FontWeight.normal)),
                       Container(
                         child: Row(

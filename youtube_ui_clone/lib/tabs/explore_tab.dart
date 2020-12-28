@@ -7,13 +7,13 @@ import 'package:youtube_ui_clone/widgets/suggestions.dart';
 import 'package:youtube_ui_clone/widgets/video_widget.dart';
 
 class ExploreTab extends StatelessWidget {
-  List<Widget> getVideos() {
+  List<Widget> getVideos(BuildContext context) {
     List<Video> videos = generateVideos();
     List<Widget> videosWidgetList = [];
 
     videosWidgetList.add(Container(
       padding: EdgeInsets.only(top: 10, bottom: 10),
-      color: Color(0xFF212121),
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Suggestions(),
     ));
 
@@ -28,7 +28,7 @@ class ExploreTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFF212121),
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: ListView(
           children: <Widget>[
             Container(
@@ -42,7 +42,8 @@ class ExploreTab extends StatelessWidget {
                           horizontal: 20.0, vertical: 15.0),
                       child: Text("Movies",
                           style: TextStyle(
-                              color: Colors.white,
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
                               fontWeight: FontWeight.bold)),
                       decoration: BoxDecoration(
                           border: Border.all(
@@ -56,7 +57,8 @@ class ExploreTab extends StatelessWidget {
                           horizontal: 20.0, vertical: 15.0),
                       child: Text("Trending",
                           style: TextStyle(
-                              color: Colors.white,
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
                               fontWeight: FontWeight.bold)),
                       decoration: BoxDecoration(
                           border: Border.all(color: Color(0xFF909090)),
@@ -75,7 +77,8 @@ class ExploreTab extends StatelessWidget {
                           horizontal: 20.0, vertical: 15.0),
                       child: Text("Music",
                           style: TextStyle(
-                              color: Colors.white,
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
                               fontWeight: FontWeight.bold)),
                       decoration: BoxDecoration(
                           border: Border.all(
@@ -89,7 +92,8 @@ class ExploreTab extends StatelessWidget {
                           horizontal: 20.0, vertical: 15.0),
                       child: Text("News",
                           style: TextStyle(
-                              color: Colors.white,
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
                               fontWeight: FontWeight.bold)),
                       decoration: BoxDecoration(
                           border: Border.all(color: Color(0xFF909090)),
@@ -108,7 +112,8 @@ class ExploreTab extends StatelessWidget {
                           horizontal: 20.0, vertical: 15.0),
                       child: Text("Learning",
                           style: TextStyle(
-                              color: Colors.white,
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
                               fontWeight: FontWeight.bold)),
                       decoration: BoxDecoration(
                           border: Border.all(
@@ -122,7 +127,8 @@ class ExploreTab extends StatelessWidget {
                           horizontal: 20.0, vertical: 15.0),
                       child: Text("Gaming",
                           style: TextStyle(
-                              color: Colors.white,
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
                               fontWeight: FontWeight.bold)),
                       decoration: BoxDecoration(
                           border: Border.all(color: Color(0xFF909090)),
@@ -141,7 +147,8 @@ class ExploreTab extends StatelessWidget {
                           horizontal: 20.0, vertical: 15.0),
                       child: Text("Fashion & Beauty",
                           style: TextStyle(
-                              color: Colors.white,
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
                               fontWeight: FontWeight.bold)),
                       decoration: BoxDecoration(
                           border: Border.all(
@@ -155,7 +162,8 @@ class ExploreTab extends StatelessWidget {
                           horizontal: 20.0, vertical: 15.0),
                       child: Text("Live",
                           style: TextStyle(
-                              color: Colors.white,
+                              color:
+                                  Theme.of(context).textTheme.bodyText1.color,
                               fontWeight: FontWeight.bold)),
                       decoration: BoxDecoration(
                           border: Border.all(color: Color(0xFF909090)),
@@ -164,8 +172,8 @@ class ExploreTab extends StatelessWidget {
                   ],
                 )),
             SizedBox(height: 10.0),
-            getVideos()[1],
-            getVideos()[2],
+            getVideos(context)[1],
+            getVideos(context)[2],
             // getVideos()[6],
             // getVideos()[5],
             // getVideos()[4],

@@ -78,8 +78,12 @@ class _VideoDetailState extends State<VideoDetail> {
     return Column(
       children: <Widget>[
         ListTile(
-          title: Text(widget.videoD.videoTitle),
-          subtitle: Text(widget.videoD.getViewCount() + " views"),
+          title: Text(widget.videoD.videoTitle,
+              style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyText1.color)),
+          subtitle: Text(widget.videoD.getViewCount() + " views",
+              style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyText1.color)),
           trailing: Icon(Icons.arrow_drop_down),
         ),
         Container(
@@ -197,8 +201,10 @@ class _VideoDetailState extends State<VideoDetail> {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(color: Colors.grey, width: 0.5),
-          bottom: BorderSide(color: Colors.grey, width: 0.5),
+          top: BorderSide(
+              color: Theme.of(context).textTheme.bodyText1.color, width: 0.5),
+          bottom: BorderSide(
+              color: Theme.of(context).textTheme.bodyText1.color, width: 0.5),
         ),
       ),
       child: Row(
@@ -208,11 +214,13 @@ class _VideoDetailState extends State<VideoDetail> {
               leading: CircleAvatar(
                 backgroundImage: widget.videoD.user.profilePicture,
               ),
-              title: Text(
-                "${widget.videoD.user.username}",
-                overflow: TextOverflow.ellipsis,
-              ),
-              subtitle: Text("15,000 subscribers"),
+              title: Text("${widget.videoD.user.username}",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color)),
+              subtitle: Text("15,000 subscribers",
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyText1.color)),
             ),
           ),
           FlatButton.icon(

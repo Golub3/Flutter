@@ -7,13 +7,13 @@ import 'package:youtube_ui_clone/widgets/suggestions.dart';
 import 'package:youtube_ui_clone/widgets/video_widget.dart';
 
 class HomeTab extends StatelessWidget {
-  List<Widget> getVideos() {
+  List<Widget> getVideos(BuildContext context) {
     List<Video> videos = generateVideos();
     List<Widget> videosWidgetList = [];
 
     videosWidgetList.add(Container(
       padding: EdgeInsets.only(top: 10, bottom: 10),
-      color: Color(0xFF212121),
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Suggestions(),
     ));
 
@@ -76,8 +76,8 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFF212121),
-      child: ListView(children: getVideos()),
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: ListView(children: getVideos(context)),
     );
   }
 }
